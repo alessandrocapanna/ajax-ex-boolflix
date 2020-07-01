@@ -3,9 +3,11 @@ $(document).ready(
 
     $('button').click(
       function(){
+        // NOTE: resetto prima i risultati della ricerca precedente
+        $('ul#film-lista li').remove();
         // NOTE: salvo ricerca dell'utente in una variabile
         var ricercaUtente = $('input#ricerca-utente').val().toString();
-        
+
         searchPrintMovie(ricercaUtente);
       }
     );
@@ -55,7 +57,7 @@ $(document).ready(
         };
         var html = template(context);
 
-        $('ul').append(html);
+        $('ul#film-lista').append(html);
       }
     }
   }
