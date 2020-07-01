@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.js"></script>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <input type="text" name="" value="" placeholder="cerca il tuo film" id="ricerca-utente">
+    <button type="button" name="button">search</button>
+
+    <!-- NOTE: per visualizzare momentaneamente a schermo i risultati della ricerca -->
+    <ul>
+    </ul>
+
+    <script id="film-template" type="text/x-handlebars-template">
+      <li>
+        {{titolo}} - {{titoloOriginale}} - {{linguaOriginale}} - {{votoUtente}}
+      </li>
+    </script>
+    <!-- NOTE: collegamento a js -->
+    <script type="text/javascript" src="js/script.js"></script>
+  </body>
+</html>
