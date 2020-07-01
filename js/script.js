@@ -8,7 +8,7 @@ $(document).ready(
         // NOTE: salvo ricerca dell'utente in una variabile
         var ricercaUtente = $('input#ricerca-utente').val().toString();
 
-        searchPrintMovie(ricercaUtente);
+        searchMovies(ricercaUtente);
       }
     );
 
@@ -17,7 +17,7 @@ $(document).ready(
 
 
     // NOTE: funzione search moovie con ajax
-    function searchPrintMovie(ricercaUtente) {
+    function searchMovies(ricercaUtente) {
       $.ajax(
         {
           url:'https://api.themoviedb.org/3/search/movie',
