@@ -2,6 +2,20 @@ i {
   color: gold;
   font-size: 16px;
 }
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  padding: 10px;
+}
 .lingua-originale img {
   width: 16px;
 }
