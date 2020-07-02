@@ -7,6 +7,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.js"></script>
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- fontawsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
 
@@ -15,16 +19,19 @@
 
     <!-- NOTE: per visualizzare momentaneamente a schermo i risultati della ricerca -->
     <ul id="film-lista">
-    </ul>
 
+    </ul>
+  
     <script id="film-template" type="text/x-handlebars-template">
       <li>
-        <span class="titolo">{{titolo}}</span>
-        <span class="titolo-lingua-originale">{{titoloOriginale}}</span>
-        <span class="lingua-originale">{{linguaOriginale}}</span>
-        <span class="voto-utente">{{votoUtente}}</span>
+        <h2 class="titolo">{{titolo}}</h2>
+        <span class="titolo-lingua-originale">titolo in lingua originale: {{titoloOriginale}}</span>
+        <span class="lingua-originale">lingua originale:{{{linguaOriginale}}}</span>
+        <span class="voto-utente"> media voto: {{{votoUtente}}}</span>
+        <span class="film-serie">{{filmSerie}}</span>
       </li>
     </script>
+
     <!-- NOTE: collegamento a js -->
     <script type="text/javascript" src="js/script.js"></script>
   </body>
