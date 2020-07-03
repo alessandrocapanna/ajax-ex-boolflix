@@ -1,7 +1,7 @@
 $(document).ready(
   function(){
 
-    $('button').click(
+    $('#button-search').click(
       function(){
         // NOTE: resetto prima i risultati della ricerca precedente
         $('ul#film-lista li').remove();
@@ -15,6 +15,12 @@ $(document).ready(
 
       }
     );
+
+    $("#ricerca-utente").keypress(function(event) {
+    if (event.keyCode === 13) {
+        $("#button-search").click();
+    }
+});
 
 
     //----------------funzioni------------------//
