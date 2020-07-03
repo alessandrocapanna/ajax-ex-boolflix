@@ -60,7 +60,8 @@ $(document).ready(
             linguaOriginale:  lingua(singoloFilm.original_language),
             votoUtente: stella(singoloFilm.vote_average),
             filmSerie:filmSerie(singoloFilm.media_type),
-            urlPoster:poster(singoloFilm.poster_path)
+            urlPoster:poster(singoloFilm.poster_path),
+            overview:singoloFilm.overview
           };
           var html = template(context);
 
@@ -71,7 +72,7 @@ $(document).ready(
 
     // NOTE: funzione poster
     function poster(url){
-      var img = '<img src="https://image.tmdb.org/t/p/w185' + url + '" alt="">';
+      var img = '<img src="https://image.tmdb.org/t/p/w342' + url + '" alt="">';
       return img;
     }
 
@@ -88,15 +89,8 @@ $(document).ready(
 
     // NOTE: funzione immagine lingua o se non c'è lingua normale
     function lingua(lingua){
-      if (lingua=== 'it') {
-        var img = '<img src="img/it.png" alt="it">';
-      }else if (lingua === 'en') {
-        var img = '<img src="img/en.png" alt="en">';
-      }else if (lingua === 'es') {
-        var img = '<img src="img/es.png" alt="es">';
-      }else {
-        var img = lingua;
-      }
+      var img = '<img src="img/'+ lingua +'.png" alt="it">'
+
       return img;
     }
 

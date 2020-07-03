@@ -1,21 +1,80 @@
+/* RESET */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* inizio elementi generali */
+body {
+font-family: 'Roboto';
+}
 i {
   color: gold;
   font-size: 16px;
 }
 ul {
   list-style-type: none;
+}
+/* fine elementi generali */
+
+/* inzio header */
+header {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  height: 70px;
+  align-items: center;
+}
+.header-dx {
+  color: red;
+}
+/* fine header */
+
+/* inizio body */
+ul {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
-
+  justify-content:space-around;
+  height: calc(100vh - 70px);
+  background-color: gray;
+  overflow-y: auto;
 }
-
 li {
   display: flex;
   flex-direction: column;
-  width: 250px;
+  width: 342px;
+  height: 513px;
+  margin: 20px;
+}
+.poster {
+  position: relative;
+  width: 100%;
+}
+.info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color :white;
+  display: none;
+}
+/* all'hover del poster visualizzo le info */
+ul#film-lista li:hover .poster > img{
+  display: none;
+  background-color: black;
+}
+ul#film-lista li:hover {
+  background-color: black;
+  border: 2px solid white;
+  overflow-y: auto;
+}
+ul#film-lista li:hover .info {
+  display: block;
+  width: 100%;
   padding: 10px;
 }
 .lingua-originale img {
   width: 16px;
 }
+/* fine body */

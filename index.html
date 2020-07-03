@@ -11,25 +11,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <!-- css -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   </head>
   <body>
 
-    <input type="text" name="" value="" placeholder="cerca il tuo film" id="ricerca-utente">
-    <button type="button" name="button">search</button>
+    <header>
+      <div class="header-dx">
+        <h2>NEDDUFLIX</h2>
+      </div>
+      <div class="header-sx">
+        <input type="text" name="" value="" placeholder="cerca il tuo film" id="ricerca-utente">
+        <button type="button" name="button">search</button>
+      </div>
+    </header>
 
-    <!-- NOTE: per visualizzare momentaneamente a schermo i risultati della ricerca -->
-    <ul id="film-lista">
+    <body>
+      <!-- per visualizzare momentaneamente a schermo i risultati della ricerca -->
+      <ul id="film-lista">
+      </ul>
+    </body>
 
-    </ul>
-  
+    <!-- template -->
     <script id="film-template" type="text/x-handlebars-template">
       <li>
-        <h2 class="titolo">{{titolo}}</h2>
-        <span class="poster">{{{urlPoster}}}</span>
-        <span class="titolo-lingua-originale">titolo in lingua originale: {{titoloOriginale}}</span>
-        <span class="lingua-originale">lingua originale:{{{linguaOriginale}}}</span>
-        <span class="voto-utente"> media voto: {{{votoUtente}}}</span>
-        <span class="film-serie">tipo: {{filmSerie}}</span>
+        <div class="poster">{{{urlPoster}}}
+          <div class="info">
+            <h2 class="titolo">{{titolo}}</h2><br>
+            <h4 class="titolo-lingua-originale">Titolo in lingua originale: {{titoloOriginale}}</h4> <br>
+            <span class="lingua-originale">Lingua originale:  {{{linguaOriginale}}}</span><br>
+            <span class="voto-utente">Media voto:  {{{votoUtente}}}</span><br>
+            <span class="film-serie">Tipo:  {{filmSerie}}</span><br>
+            <span class="overview">Overview:  {{overview}}</span>
+          </div>
+        </div>
+
       </li>
     </script>
 
