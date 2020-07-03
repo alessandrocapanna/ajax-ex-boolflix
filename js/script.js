@@ -6,31 +6,65 @@ $(document).ready(
         // NOTE: resetto prima i risultati della ricerca precedente
         $('ul#film-lista li').remove();
         // NOTE: salvo ricerca dell'utente in una variabile
-        var ricercaUtente = $('input#ricerca-utente').val().toString();
+        var ricercaUtente = $('input#ricerca-utente').val();
         if (ricercaUtente == '') {
           alert('devi inserire il titolo del film o della serie')
         }else {
-          searchMovies(ricercaUtente);
+          searchMovies(ricercaUtente, 'movie');
+          searchMovies(ricercaUtente, 'tv');
         }
 
       }
     );
 
     $("#ricerca-utente").keypress(function(event) {
-    if (event.keyCode === 13) {
-        $("#button-search").click();
-    }
-});
+      if (event.keyCode === 13) {
+          $("#button-search").click();
+      }
+    });
 
 
     //----------------funzioni------------------//
 
+    // NOTE: funzione per stampare : Titolo Titolo Originale Lingua Voto
+    function printMovie(risultatiFilm, tipo) {
+      for (var i = 0; i < risultatiFilm.length; i++) {
+        var singoloFilm = risultatiFilm[i];
+        console.log(singoloFilm);
+
+        var source = $("#film-template").html();
+        var template = Handlebars.compile(source);
+
+        var context = {
+          titolo: singoloFilm.title || singoloFilm.name,
+          titoloOriginale: singoloFilm.original_title || singoloFilm.original_name,
+          linguaOriginale:  lingua(singoloFilm.original_language),
+          votoUtente: stella(singoloFilm.vote_average),
+          filmSerie: tipo,
+          urlPoster:poster(singoloFilm.poster_path),
+          overview:singoloFilm.overview
+        };
+        var html = template(context);
+
+        $('ul#film-lista').append(html);
+
+      }
+    }
 
     // NOTE: funzione search moovie con ajax
-    function searchMovies(ricercaUtente) {
+    function searchMovies(ricercaUtente, type) {
+
+      if (type ==='movie') {
+        var url = 'https://api.themoviedb.org/3/search/movie';
+        var tipo = 'film';
+      } else if (type ==='tv'){
+        var url = 'https://api.themoviedb.org/3/search/tv';
+        var tipo = 'serie tv';
+      }
+
       $.ajax(
         {
-          url:'https://api.themoviedb.org/3/search/multi',
+          url: url,
           method: 'GET',
           data: {
             query: ricercaUtente,
@@ -41,7 +75,7 @@ $(document).ready(
             var risultatiFilm = data.results;
             // console.log(risultatiFilm);
 
-            printMovie(risultatiFilm);
+            printMovie(risultatiFilm, tipo);
           },
           error:function(){
             alert('si è verificato un errore');
@@ -51,51 +85,20 @@ $(document).ready(
       );
     }
 
-    // NOTE: funzione per stampare : Titolo Titolo Originale Lingua Voto
-    function printMovie(risultatiFilm) {
-      for (var i = 0; i < risultatiFilm.length; i++) {
-        var singoloFilm = risultatiFilm[i];
-
-        if (singoloFilm.media_type !== 'person') {
-          var source = $("#film-template").html();
-          var template = Handlebars.compile(source);
-
-          var context = {
-            titolo: singoloFilm.title || singoloFilm.name,
-            titoloOriginale: singoloFilm.original_title || singoloFilm.original_name,
-            linguaOriginale:  lingua(singoloFilm.original_language),
-            votoUtente: stella(singoloFilm.vote_average),
-            filmSerie:filmSerie(singoloFilm.media_type),
-            urlPoster:poster(singoloFilm.poster_path),
-            overview:singoloFilm.overview
-          };
-          var html = template(context);
-
-          $('ul#film-lista').append(html);
-        }
-      }
-    }
-
     // NOTE: funzione poster
     function poster(url){
       var img = '<img src="https://image.tmdb.org/t/p/w342' + url + '" alt="">';
       return img;
     }
 
-    // NOTE: funzione filmSerie
-    function filmSerie(tipo) {
-      var tipoDiContenuto = tipo;
-      if(tipoDiContenuto === 'movie'){
-        var tipoDiContenuto = 'film';
-      }else if(tipoDiContenuto === 'tv'){
-        var tipoDiContenuto = 'serie tv';
-      }
-      return tipoDiContenuto;
-    }
-
     // NOTE: funzione immagine lingua o se non c'è lingua normale
     function lingua(lingua){
-      var img = '<img src="img/'+ lingua +'.png" alt="it">'
+      var arrayDisponibili = [ 'it', 'es', 'en']
+      if (arrayDisponibili.includes(lingua)) {
+        var img = '<img src="img/'+ lingua +'.png" alt="it">';
+      }else {
+        var img = lingua;
+      }
 
       return img;
     }

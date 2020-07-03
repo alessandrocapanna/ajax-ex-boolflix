@@ -48,9 +48,12 @@ li {
   height: 513px;
   margin: 20px;
 }
-.poster {
+.poster{
   position: relative;
-  width: 100%;
+}
+.poster > img{
+  height: 513px;
+  width: 342px;
 }
 .info {
   position: absolute;
